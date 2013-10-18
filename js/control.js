@@ -1,6 +1,8 @@
 function HeadController($scope, $http, $location, gamesService,  $rootScope, userService){
     // var started = 0; 
+    // $('#notif').fadeOut(10000);
     $scope.showMaintainance = false;
+    $rootScope.clicked = false;
     $scope.init = function(){
         $('.wrapper').attr('style','padding-left: 320px;');
         $('#side-id').show();
@@ -69,7 +71,6 @@ function HeadController($scope, $http, $location, gamesService,  $rootScope, use
 
     $scope.Signout = function(){
         userService.setUser('', '', 0,0);
-        alert('logout')
         $rootScope.usermode = 0;
     }
     $scope.checkIfValidUser =function(id){

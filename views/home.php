@@ -42,7 +42,7 @@
                     <span class="subtitle">Why join <img src="http://www.any.tv/wp-content/uploads/2013/03/anytv-logo-1600x1600-to-84x32.png">?</span>
 
                     We pay you recommendation revenue in addition to YouTube ad revenue, and we have a fully-functioning dashboard that reports your earnings the moment they happen.
-
+                    <div type="text" popover-placement="bottom" popover="On the Bottom!"> test</div>
                     Also, we pay you a lifetime 10% bonus for recommending us to your friends!
                   </div>
                   <div class="col-lg-4">

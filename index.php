@@ -41,7 +41,7 @@ header('Content-Type: text/html; charset=UTF-8');
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand"  ng-click="showSide()"><img src="/img/games-home_logo.png" alt="Games on anyTV!"  popover-placement="bottom" popover="On the Bottom!" popover-trigger="mouseenter"></a>
+              <a class="navbar-brand"  ><img src="/img/logo.png" alt="Games on anyTV!" class="logo" ng-click="showSide(); clicked =true;"></a><a href="/"><img src="/img/logotext.png" alt="Games on anyTV!" ></a>
           </div>
           <div class="collapse navbar-collapse navbar-ex1-collapse">
               <form class="navbar-form navbar-left" role="search">
@@ -197,10 +197,10 @@ header('Content-Type: text/html; charset=UTF-8');
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
       </div>
-      <!-- <div class="notifbox">
-        <alert type="success" close="closeAlert($index)">Click here to show the sidebar!</alert>
+      <div class="notifbox arrow_box2" id="notif" ng-hide="clicked">
+        Click here to show the sidebar! <a class="btn btn-success" ng-click="clicked=true;">Got It!</a>
         
-      </div> -->
+      </div>
     </header>
     <div class="wrapper">
         <div class="sidebar" ng-controller="SidebarController" id="side-id">

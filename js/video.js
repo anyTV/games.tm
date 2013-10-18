@@ -8,6 +8,7 @@ function VideoController($scope, $http, $routeParams, gamesService, userService,
     $('#side-id').show();
     $('#mainview').attr('style','width: 100%;');
     $('#side-id').show();
+    $rootScope.clicked = true;
     $scope.timeago = function(dated){
         var date = humanized_time_span(dated);
         return date;

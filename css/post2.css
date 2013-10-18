@@ -38,7 +38,18 @@
     .navbar-form { margin-top: 10px; }
     .subnav { position: fixed; top: 50px; right: 0px; left:0px; height:50px; background-color: red; z-index: 2000;}
     .stick { top: 0;}
-    .notifbox { position: fixed; top:50px; left:0px; z-index: 2000; background-color: #ccc; color:#eee;}
+    .notifbox { 
+        position: absolute; top:50px; left:0px; z-index: 1030; padding: 9px 14px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border: 1px solid rgba(0,0,0,0.2);
+        border-radius: 6px;
+        -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        background-clip: padding-box;
+        
+    }
+    .logo { margin-right: 10px; }
 /*SIDEBAR*/
     .sidebar {
       margin-left: -320px;
@@ -326,17 +337,29 @@
     }
 
     .arrow_box:after 
-{        border-color: rgba(136, 183, 213, 0);
+    {        border-color: rgba(136, 183, 213, 0);
         border-bottom-color: white;
         border-width: 10px;
         left: 49%;
         margin-left: -10px;
     }
+    .arrow_box2 {
+        background: rgba(245, 245, 245);
+    }
+    .arrow_box2:after, .arrow_box2:before {
+        bottom: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
     .arrow_box2:after {
         border-color: rgba(245, 245, 245, 0);
         border-bottom-color: white;
         border-width: 11px;
-        left: 79%;
+        left: 9.5%;
         margin-left: -11px;
     }
     body{ 
