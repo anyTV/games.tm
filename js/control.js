@@ -415,7 +415,7 @@ function MaintainController($scope, $http, maintainService, gamesService, $rootS
       $('#refreshGames1').button('loading');
       $('#games').hide();
 
-      gamesService.getSavedGames().then(function(data){
+      gamesService.refreshSavedGames().then(function(data){
           $rootScope.games = data;
           $('#games').show();
           track('gamesonhead', $rootScope.games);

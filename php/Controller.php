@@ -137,6 +137,10 @@
         $game = new Game();
         echo json_encode($game->loadSavedGames());
     }
+    function refreshSavedGames(){
+        $game = new Game();
+        echo json_encode($game->refreshSavedGames());
+    }
     // USER1
     function getUser(){
         $user = new User();
