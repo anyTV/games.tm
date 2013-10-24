@@ -1,5 +1,5 @@
 <?php
-    
+    include('mysql.conf');
     function my_autoloader($classname) {
         include 'classes/'.$classname.'.php';
     }
