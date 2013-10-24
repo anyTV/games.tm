@@ -51,7 +51,7 @@
                 // break;
                 $this->_games->insert($g);
             }
-            file_put_contents('../php/default-games.php', json_encode($games));
+            file_put_contents('../php/default-games.conf', json_encode($games));
         }
         function getCurrentGame($alias){
             $cursor = $this->_games->findOne(array("alias" => $alias));

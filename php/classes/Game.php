@@ -12,7 +12,7 @@
         }
 
         public function loadDefaultGames(){
-            $games = file_get_contents("../php/default-games.php");
+            $games = file_get_contents("../php/default-games.conf");
             return $games;
         }
 
