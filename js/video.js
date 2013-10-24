@@ -22,13 +22,17 @@ function VideoController($scope, $http, $routeParams, gamesService, userService,
             return w;
         });
     };
-
     $scope.Login = function (email, password) {
             $scope.loginmessage.message ='';
             $scope.loginmessage.cls = 'logmess';
             $('#loginbtnp').button('loading');
-            userService.checkUser(email, password).then(function(data){
-                    if(data==""){
+
+            var myuser = {'email':'', 'password':''};
+            myuser['email'] = email;
+            myuser['password'] = password;
+
+            userService.signIn(myuser).then(function(data){
+                    if(data=="0"){
                         $scope.loginmessage.message = "User does not exists. Please try again.";
                         $scope.loginmessage.cls = "alert-danger logmess-v";
                         $('#loginformp').show();
@@ -36,14 +40,8 @@ function VideoController($scope, $http, $routeParams, gamesService, userService,
                         $('#waitformp').show();
                     }
                     else { 
-                        userService.setUser(email, password, data);
-                        $rootScope.user.email = email;
-                        $rootScope.user.password = password;
-                        $rootScope.user.id = data;
-                        userService.getReferralLink(data).then(function(data){
-                          $rootScope.user.aff_id = data;
-                        });
-                        $rootScope.usermode = 1;
+                        $rootScope.user = data;
+                        track('user in',$rootScope.user);
                         $scope.loginmessage.message = "Login successful. Please wait while we generate your Play Now link...";
                         $scope.loginmessage.cls = "alert-success logmess-v";
                         $('#loginformp').hide();
@@ -55,7 +53,7 @@ function VideoController($scope, $http, $routeParams, gamesService, userService,
                             real_offer = str[0].substr(0,str[0].length);
                         else
                             real_offer = $scope.currentgame.redirect_offer_id;
-                        userService.getPlayNowLink($scope.currentuser.id, real_offer).then(function(data){
+                        userService.getPlayNowLink(real_offer).then(function(data){
                                 track('link',data);      
                                 $('#linktext').val(data);
                                 $('#loginformp').hide();
@@ -74,9 +72,7 @@ function VideoController($scope, $http, $routeParams, gamesService, userService,
     $scope.num = 0;
     $scope.numberOfPages=function(){ if($scope.currentgame == null) return 0; else return Math.ceil($scope.currentgame.videos.length/$scope.pageSize); }
 
-    $scope.carou = [];
     $scope.countries = [];  
-    $scope.currentgamedetails = [];
     $scope.search="";
     $scope.loginmessage = [{message:'',cls:'logmess'}];
 
@@ -121,14 +117,14 @@ function VideoController($scope, $http, $routeParams, gamesService, userService,
         };
         return myarray;
     }
-    gamesService.getCurrentGame($routeParams.gameid).then(function(data){
-                $('.pagers').hide();
+    gamesService.getCurrentGame($routeParams.alias).then(function(data){
+                $('#gamesPager').hide();
                 $rootScope.currentgame = $scope.currentgame = data;
                 $scope.currentgame.pay = parseFloat($scope.currentgame.pay);
-                var ctri, ctra = 0;
-                if($scope.currentgame.state =='paused'){ ctri++; $scope.currentgame.realstate = "paused" }
-                else if($scope.currentgame.pay != 0){ ctra++; $scope.currentgame.realstate = "active" }
-                else{ $scope.currentgame.realstate = "paused" }  
+                // var ctri, ctra = 0;
+                // if($scope.currentgame.state =='paused'){ ctri++; $scope.currentgame.realstate = "paused" }
+                // else if($scope.currentgame.pay != 0){ ctra++; $scope.currentgame.realstate = "active" }
+                // else{ $scope.currentgame.realstate = "paused" }  
 
                 $scope.countries = $scope.currentgame.country;
                 $scope.countries = $scope.arrangeCountries($scope.currentgame.country);
@@ -140,40 +136,31 @@ function VideoController($scope, $http, $routeParams, gamesService, userService,
                         $scope.currentSort = $scope.sortBy[0];
                         if($scope.currentgame.videos.length == 0){
                             $('.no-videos').show();
-                            $('.pagers').hide();
+                            $('#gamesPager').hide();
                         }
                         else{
                             $('.no-videos').hide();
-                            $('.pagers').show(); 
+                            $('#gamesPager').show(); 
                         }
                         $('.loader-videos').hide();
-                        track('novideos: php/local-savevideos.php?g='+$scope.currentgame.id+'&gamemongoid='+$scope.currentgame._id.$id , data);
                     });
                 }
                 else{
                     $scope.currentgame.videos = $scope.currentgame.videos;
                     if($scope.currentgame.videos.length == 0){
                         $('.no-videos').show();
-                        $('.pagers').hide();
+                        $('#gamesPager').hide();
                         track('show', $scope.currentgame.videos)
                     }
                     else{
-                        $('.pagers').show();
+                        $('#gamesPager').show();
                         $('.no-videos').hide();
                     }
                     $('.loader-videos').hide();
                     track('hasvideos', $scope.currentgame.videos)
                     $scope.currentSort = $scope.sortBy[0];
                 }
-            gamesService.getGameDetails($routeParams.gameid).then(function(data){
-                        $scope.currentgamedetails = data[0];
-                        track('details',data[0])
-                    });
-            gamesService.getGameScreens($scope.currentgame.name.toLowerCase()).then(function(data){
-                        $scope.carou = data;
-                        track('carou', $scope.carou);
-                    });
-            
+           
      });
     $scope.refreshVideo = function(){
         $scope.currentgame.videos = [];
@@ -222,7 +209,7 @@ function VideoController($scope, $http, $routeParams, gamesService, userService,
                 real_offer = str[0].substr(0,str[0].length);
             else
                 real_offer = $scope.currentgame.redirect_offer_id;
-            userService.getPlayNowLink($scope.currentuser.id, real_offer).then(function(data){
+            userService.getPlayNowLink(real_offer).then(function(data){
                 track('link', data)  
                 $('#loginformp').hide();
                 $('#linkformp').show();

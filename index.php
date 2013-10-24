@@ -31,7 +31,7 @@ header('Content-Type: text/html; charset=UTF-8');
 </head>
 <body >
 
-    <header ng-controller = "HeadController" ng-init = "init()">
+    <header ng-controller = "HeadController" ng-init = "init()" ng-cloak>
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <!-- <nav class="navbar navbar-default navbar-fixed-top" ng-hide="navTop" role="navigation"> -->
           <div class="navbar-header">
@@ -41,7 +41,12 @@ header('Content-Type: text/html; charset=UTF-8');
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand"  ><img src="/img/logo.png" alt="Games on anyTV!" class="logo" ng-click="showSide(); clicked =true;"></a><a href="/"><img src="/img/logotext.png" alt="Games on anyTV!" ></a>
+                <img src="/img/logo.png" alt="Games on anyTV!" class="logo" ng-click="showSide(); clicked =true;">
+              <a class="navbar-brand" >
+                <a href="/"><img src="/img/logotext.png" alt="Games on anyTV!" >
+              <!-- </a><a href="/"> -->
+                </a>
+              </a>
           </div>
           <div class="collapse navbar-collapse navbar-ex1-collapse">
               <form class="navbar-form navbar-left" role="search">
@@ -95,10 +100,15 @@ header('Content-Type: text/html; charset=UTF-8');
                               Gameplay
                             </div>
                           </a>
+
+                        </li>
+                        <li class="social">
+                          <!-- <div class=""> <hr></div> -->
+                          <hr>
                           <a href="http://www.youtube.com/anyTVnetwork">
                             <img class='sitelogos' src="img/favicon/youtube.png">
                             <div>
-                                YouTube
+                                YouTube {{user.email}}
                             </div>
                           </a>
                           <a href="http://www.twitter.com/anyTVnetwork">
@@ -114,7 +124,6 @@ header('Content-Type: text/html; charset=UTF-8');
                             </div>
                           </a>
                         </li>
-                        
                       </ul>
                   </li>
                   <li><button data-toggle="modal" href=".refModal" ng-show="user.email!=''" class="btn btn-primary referlink" ng-click="referLink(user.id)">Get your Refer-a-Friend link</button></li>
@@ -124,7 +133,7 @@ header('Content-Type: text/html; charset=UTF-8');
                       <ul class="dropdown-menu user-menu">
                           <li><a href="/php/form-post.php" target="_blank" class="">Check Earnings</a></li>
                           <li><a href="#/referrals" class="">My Referrals</a></li>
-                          <li><a href="#/maintainance" target='_blank' class="" ng-show="showMaintainance" ng-click="">Site Maintenance</a></li>
+                          <li><a href="#/maintainance" target='_blank' class="" ng-show="user.admin" ng-click="">Site Maintenance</a></li>
                           <li><a href="/" ng-click="Signout()" class="">Sign out</a></li>
                       </ul>
                   </li>
@@ -187,7 +196,7 @@ header('Content-Type: text/html; charset=UTF-8');
             <h6 class="text-center">Spread this link to others to earn 10% lifetime bonus!</h6>
             <div>
               <div class="pull-left col-lg-12">
-                <input type='text' id='refertext' class="form-control text-center" value="http://www.dashboard.tm/signup/{{user.aff_id}}">
+                <input type='text' id='refertext' class="form-control text-center" value="http://www.dashboard.tm/signup/{{user.affiliate_id}}">
                 <button data-toggle="modal" href=".referModal" class="btn btn-primary" id="referlink" onmouseover="copy2('#referlink','#refertext')">Click to Copy</button>
               </div>
               <div class="clearfix"></div>
@@ -197,13 +206,13 @@ header('Content-Type: text/html; charset=UTF-8');
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
       </div>
-      <div class="notifbox arrow_box2" id="notif" ng-hide="clicked">
-        Click here to show the sidebar! <a class="btn btn-success" ng-click="clicked=true;">Got It!</a>
+      <div class="notifbox arrow_box2" id="notif" ng-hide="clicked || user.email!=''">
+        Click here to hide the sidebar! <a class="btn btn-success" ng-click="clicked=true;">Got It!</a>
         
       </div>
     </header>
     <div class="wrapper">
-        <div class="sidebar" ng-controller="SidebarController" id="side-id">
+        <div class="sidebar" ng-controller="SidebarController" id="side-id" ng-cloak>
 
             <div class="panel-group" id="accordion" >
                 <div class="panel featured-box" ng-repeat="g in hgames">
@@ -222,7 +231,7 @@ header('Content-Type: text/html; charset=UTF-8');
                         </a>
                     </div>
                     <div id="collapse{{$index}}" class=" panel-collapse collapse featured-box-content ">
-                        <a href="#/game/{{game.game_fid}}" ng-repeat="game in g.games" ng-click="closeOthers();game.active = !game.active;" ng-class="{true:'hotgame-item-active',false:'hotgame-item'}[game.active]"> &nbsp; {{game.game_name}}<BR></a>
+                        <a href="#/game/{{game.alias}}" ng-repeat="game in g.games" ng-click="closeOthers();game.active = !game.active;" ng-class="{true:'hotgame-item-active',false:'hotgame-item'}[game.active]"> &nbsp; {{game.name}}<BR></a>
                     </div>
                 </div>
                 <div class="panel featured-box" >
@@ -240,7 +249,7 @@ header('Content-Type: text/html; charset=UTF-8');
                         </a>
                     </div>
                     <div id="collapse00" class="panel-collapse collapse in featured-box-content all-games midget" style="top:{{(hgames.length+1)*24+50}}px;">
-                            <a href="#/game/{{game.fid}}" ng-repeat="game in games | orderBy:'name':false;" ng-click="declickOthers(game);game.clicked = true;"
+                            <a href="#/game/{{game.alias}}" ng-repeat="game in games | orderBy:'name':false;" ng-click="declickOthers(game);game.clicked = true;"
                              class="hotgame-item" ng-class="{true:'hotgame-item-active',false:'hotgame-item'}[game.clicked]"> {{game.name}}</a>
                         
                     </div>

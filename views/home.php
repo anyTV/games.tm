@@ -42,7 +42,6 @@
                     <span class="subtitle">Why join <img src="http://www.any.tv/wp-content/uploads/2013/03/anytv-logo-1600x1600-to-84x32.png">?</span>
 
                     We pay you recommendation revenue in addition to YouTube ad revenue, and we have a fully-functioning dashboard that reports your earnings the moment they happen.
-                    <div type="text" popover-placement="bottom" popover="On the Bottom!"> test</div>
                     Also, we pay you a lifetime 10% bonus for recommending us to your friends!
                   </div>
                   <div class="col-lg-4">
@@ -52,44 +51,71 @@
                 
               </div>
             </div>
-
-          <div class="subheading">
-            <span class="pull-left small-descriptions">
-             Here you can view our list of games:
-           </span>
-            <div class="clearfix"></div>
-          </div>
-          <div ng-init="roulette()" class="gamelist-container">
-            <div class="pull-left leftwing">
-              <a ng-class="{true:'glyphicon glyphicon-remove',false:'glyphicon glyphicon-chevron-left'}[currentPage2 == 0]"  ng-click="pageprev()"></a>
-            </div>
-            <section class="pull-left" id="gridGames" >
-                <div class="pagers pagers-home" id="gamesPager">{{currentPage2+1}}/{{numberOfPages2()}}</div>
-                <div class='gameimgbox ' ng-animate="animate" ng-repeat="g in (games | orderBy: 'name':false | startFrom:currentPage2*pageSize2 | limitTo:pageSize2)" >
-                  <a href="/#/game/{{g.fid}}" class="linkgame">
-                  <div class="photo" ng-switch="g.pic.indexOf('.')==-1"> 
-                    <img id="gamepic" ng-switch-when="true" src="http://placehold.it/256x256/131313/EEEEEE/&text=N/A" >
-                    <img id="gamepic" ng-switch-when="false" ng-src="/upload/{{g.pic}}">
-                   </div>
-                  <div class='lgamename'>
-                    <span>{{g.name}}</span>
+          <div class="gamelistcontainer">
+            <carousel interval="myInterval" ng-init="myInterval = 3000;">
+              <slide ng-repeat="g in carousel" active="slide.active">
+                <!-- <div class='gameimgbox ' ng-repeat="g in (games | orderBy: 'name':false | startFrom:currentPage2*pageSize2 | limitTo:pageSize2)" > -->
+                <section class="pull-left" >
+                  <div class='gameimgbox2 '>
+                    <a href="/#/game/{{g.game1.fid}}" class="carougame">
+                      <div class="photo" ng-switch="g.game1.pic.indexOf('.')==-1"> 
+                        <img id="gamepic" ng-switch-when="true" src="http://placehold.it/256x256/131313/EEEEEE/&text=N/A" >
+                        <img id="gamepic" ng-switch-when="false" ng-src="/upload/{{g.game1.pic}}">
+                      </div>
+                      <p class="boxgamename">{{g.game1.name}}</p>
+                    </a>
                   </div>
-                  </a>
-                </div>
-
-            </section>
-            <div class=" rightwing">
-              <a ng-class="{true:'glyphicon glyphicon-remove',false:'glyphicon glyphicon-chevron-right'}[currentPage2 >= games.length/pageSize2 - 1]" ng-click="pagenext()"></a>
-            </div>
-            <div class="clearfix"></div>
+                  <div class='gameimgbox2 '>
+                    <a href="/#/game/{{g.game2.fid}}" class="carougame">
+                      <div class="photo" ng-switch="g.game2.pic.indexOf('.')==-1"> 
+                        <img id="gamepic" ng-switch-when="true" src="http://placehold.it/256x256/131313/EEEEEE/&text=N/A" >
+                        <img id="gamepic" ng-switch-when="false" ng-src="/upload/{{g.game2.pic}}">
+                       </div>
+                      <p class="boxgamename">{{g.game2.name}}</p>
+                    </a>
+                  </div>
+                  <div class='gameimgbox2 '>
+                    <a href="/#/game/{{g.game3.fid}}" class="carougame">
+                      <div class="photo" ng-switch="g.game3.pic.indexOf('.')==-1"> 
+                        <img id="gamepic" ng-switch-when="true" src="http://placehold.it/256x256/131313/EEEEEE/&text=N/A" >
+                        <img id="gamepic" ng-switch-when="false" ng-src="/upload/{{g.game3.pic}}">
+                       </div>
+                       <p class="boxgamename">{{g.game3.name}}</p>
+                    </a>
+                  </div>
+                  <div class='gameimgbox2 '>
+                    <a href="/#/game/{{g.game4.fid}}" class="carougame">
+                      <div class="photo" ng-switch="g.game4.pic.indexOf('.')==-1"> 
+                        <img id="gamepic" ng-switch-when="true" src="http://placehold.it/256x256/131313/EEEEEE/&text=N/A" >
+                        <img id="gamepic" ng-switch-when="false" ng-src="/upload/{{g.game4.pic}}">
+                       </div>
+                       <p class="boxgamename">{{g.game4.name}}</p>
+                    </a>
+                  </div>
+                  <div class='gameimgbox2 '>
+                    <a href="/#/game/{{g.game5.fid}}" class="carougame">
+                      <div class="photo" ng-switch="g.game5.pic.indexOf('.')==-1"> 
+                        <img id="gamepic" ng-switch-when="true" src="http://placehold.it/256x256/131313/EEEEEE/&text=N/A" >
+                        <img id="gamepic" ng-switch-when="false" ng-src="/upload/{{g.game5.pic}}">
+                       </div>
+                       <p class="boxgamename">{{g.game5.name}}</p>
+                    </a>
+                  </div>
+                  <div class='gameimgbox2 '>
+                    <a href="/#/game/{{g.game6.fid}}" class="carougame">
+                      <div class="photo" ng-switch="g.game6.pic.indexOf('.')==-1"> 
+                        <img id="gamepic" ng-switch-when="true" src="http://placehold.it/256x256/131313/EEEEEE/&text=N/A" >
+                        <img id="gamepic" ng-switch-when="false" ng-src="/upload/{{g.game6.pic}}">
+                       </div>
+                       <p class="boxgamename">{{g.game6.name}}</p>
+                    </a>
+                  </div>
+                  <div class="clearfix"></div>
+                </section>
+                <!-- </div> -->
+              </slide>
+            </carousel>
           </div>
-          <!-- {{currentPage2+1}}/{{numberOfPages2()}} -->
-          <!-- <section class="pagers pagers-home" id="gamesPager">
-            <input type="button" class="btn btn-default" ng-disabled="currentPage2 == 0" ng-click="currentPage2=currentPage2-1" value="Previous"/>
-            {{currentPage2+1}}/{{numberOfPages2()}}
-            <input type="button" class="btn btn-default" ng-disabled="currentPage2 >= games.length/pageSize2 - 1" ng-click="currentPage2=currentPage2+1" value="Next"/>
-
-          </section> -->
 
       </article>
     </tab>

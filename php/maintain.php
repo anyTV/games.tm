@@ -33,13 +33,7 @@
             break;
             case 'logo':
                 switch ($_GET['type']) {
-                    case 'change':
-                        # code...
-                        break;
-                    
-                    default:
-                        # code...
-                        break;
+                    case 'change':changeLogo();break;
                 }
             break;
             default:

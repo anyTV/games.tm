@@ -1,5 +1,6 @@
 /*NAVIGATION*/
     .navbar-brand { padding: 7px; }
+    .navbar-header {padding: 5px;}
     .navbar {  background: rgb(51,51,51); /* Old browsers */
         background: -moz-linear-gradient(top,  rgba(51,51,51,1) 0%, rgba(19,19,19,1) 100%); /* FF3.6+ */
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(51,51,51,1)), color-stop(100%,rgba(19,19,19,1))); /* Chrome,Safari4+ */
@@ -39,7 +40,7 @@
     .subnav { position: fixed; top: 50px; right: 0px; left:0px; height:50px; background-color: red; z-index: 2000;}
     .stick { top: 0;}
     .notifbox { 
-        position: absolute; top:50px; left:0px; z-index: 1030; padding: 9px 14px;
+        position: fixed; top:50px; left:0px; z-index: 1030; padding: 9px 14px;
         background-color: #fff;
         border: 1px solid #ccc;
         border: 1px solid rgba(0,0,0,0.2);
@@ -50,6 +51,7 @@
         
     }
     .logo { margin-right: 10px; }
+    .social > a { border-top: solid 1px #ccc; }
 /*SIDEBAR*/
     .sidebar {
       margin-left: -320px;
@@ -126,10 +128,11 @@
     #loginheader { margin: 15; }
     .join-container { width: 125; margin: 10 auto; }
     .btn-join { font-size: 35px; }
-    .jumbotron { font-family: verdana; padding: 10 20; }
+    .jumbotron { font-family: verdana; padding: 10 20; margin:0px;}
+    .marbottom { margin-bottom: 10px; }
     .jumbotron .col-lg-4 { font-size: 14px; }
     .lead { margin: 15 15px; font-family: Verdana; font-size: 15;}
-    .subheading { padding-left: 50; padding-right: 50;}
+    .subheading { padding-left: 100; padding-right: 50; margin-bottom: 20;}
     .small-descriptions { font-size: 20px;  }
     .subtitle { font-size: 23px; display: block; }
     .tooltip , .tooltip-inner    { max-width: 300px; }
@@ -146,7 +149,7 @@
     .reportlink { color:#33CCFF; }
 /*gameslist*/
     .gamelist-container { width: 1000; margin: 0 auto;}
-    #gridGames {width: 840; }
+    #gridGames {width: 950; }
     .gameimgbox{ float: left; width: 280; height: auto; padding: 10;}
     .gameslistimg{ height: 600; overflow-y: auto; margin: 10 auto; width: 840; }
 
@@ -155,7 +158,7 @@
     .stats a{ color: black; }
     .linkgame{ cursor: hand; text-decoration: none; font-weight: inherit;}
     .linkgame:hover{ color:white; cursor: hand; text-decoration: none; font-weight: inherit;}
-    /*.photo{ width: 150; margin: 0 auto;  }*/
+    .photo{ width: 260; margin: 0 auto;  }
     .pay { width: 200;
             height: 150;
             margin: 0 auto;
@@ -268,6 +271,8 @@
     .gamesort2{ height: 30px !important; width: auto; padding: 5;}
     .linkdiv { width: 110; margin: 11 auto; }
     #linktext {margin: 10 auto;}
+/*REFERRALS*/
+    .referralLoader { width: 35; margin: 0 auto; padding: 275 0;}
 /*MAINTAINANCE*/
     .row { margin: 0; }
     .genre-right { text-transform: uppercase; }
@@ -280,8 +285,8 @@
     .featured-content > .title { border:0;}
     .glyphicon-trash:hover, .glyphicon-remove:hover {
         text-decoration: none;
-        text-shadow: 0px 0px 10px brown;
-
+        text-shadow: 0px 0px 20px red;
+        color:white;
     }
     .glyphicon-trash {color:white;}
     table { border-collapse: separate; }
@@ -291,7 +296,7 @@
     .changeBtn { margin: 0; }
     .saveBtn { margin: 5 3; }
     .searchgames { height: 30px; width: 250px; }
-    .search-aff { width: 235; margin-top: 3; }
+    .search-aff { width: 185; margin-top: 3; }
     .list-group { margin-bottom: 0px; }
     .genretext { margin: 7;}
     .window-body { border: solid 1px black; background: #201A1A;}
@@ -319,10 +324,19 @@
     ::-webkit-scrollbar-thumb { background-color: #555; }
     ::-webkit-scrollbar-corner { background-color: whitesmoke; } 
     ::-webkit-scrollbar { width: 15px; }
-
+/*CAROUSEL*/
+    .gameimgbox2{ float: left; width: 280; }
+    .carousel { width: 100%; text-align: center; padding-bottom: 60;}
+    .carousel-inner { width: 840; margin: 0 auto; }
+    .carousel-indicators { bottom: 30px; }
+    .carousel-indicators li { border: 1px solid #000;  }
+    .carousel-indicators .active { background-color: gray; }
+    .boxgamename { margin: 10px; width: 260; }
+    .carougame > p { color:black; }
+    .gamelistcontainer { background-color: #eee; padding-top: 20;}
 /*others*/
+    /*hr { border-top: 1px solid #ddd; }*/
     .copied {background-color: yellow; color:black;}
-
     .arrow_box {
         background: rgba(245, 245, 245);
     }
@@ -359,7 +373,7 @@
         border-color: rgba(245, 245, 245, 0);
         border-bottom-color: white;
         border-width: 11px;
-        left: 9.5%;
+        left: 10.5%;
         margin-left: -11px;
     }
     body{ 
@@ -370,30 +384,22 @@
         font-family: 'verdana', Georgia, Serif;
      }
      form { margin-bottom: 0px; }
-     .animate-enter, 
-     .animate-leave
-     { 
-         -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-         -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-         -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-         -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-         transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-         position: relative;
-         display: block;
-     } 
-      
-     .animate-enter.animate-enter-active, 
-     .animate-leave {
-         opacity: 1;
-         top: 0;
-         height: 30px;
+     @keyframes fadeOut
+     {
+       from { left: 0 ; position: relative; overflow: hidden; }
+       to { left: 600; position: relative; overflow: hidden; }
      }
-      
-     .animate-leave.animate-leave-active,
-     .animate-enter {
-         opacity: 0;
-         top: -50px;
-         height: 0px;
+
+     @-webkit-keyframes fadeOut 
+     {
+       from { left: 0 ; }
+       to { left: 600; }
+     }
+
+     .fade-out
+     { 
+       animation: fadeOut 5s infinite;
+       -webkit-animation: fadeOut 5s infinite;
      }
     /*.modal { display: block !important; }*/
 

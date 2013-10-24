@@ -5,7 +5,7 @@ var Game = angular.module('Game', ['ui.bootstrap.tpls', 'ui.bootstrap']  )
          when("/maintainance", {templateUrl:'views/maintain.php'}).
          when("/maintainance/:message", {templateUrl:'views/maintain.php'}).
          when("/settings/:shit", {templateUrl:'settings.html'}).
-         when("/game/:gameid", {templateUrl:'views/game.php'}).
+         when("/game/:alias", {templateUrl:'views/game.php'}).
          when("/referrals/", {templateUrl:'views/referral.php'});
   }]);
 
@@ -67,91 +67,57 @@ Game.factory('gamesService', function ($q, $http, $rootScope) {
 
         getDefaultGames:function(){
             var deferred = $q.defer();
-            track('request','php/default-games.php');
-            $http({ method: 'POST', url: 'php/default-games.php'}).success(function(data, status, headers, config) {
+            track('request','php/Controller.php?type=Game&action=loadDefaultGames');
+            $http({ method: 'POST', url: 'php/Controller.php?type=Game&action=loadDefaultGames'}).success(function(data, status, headers, config) {
                 deferred.resolve(data);
             });
             return deferred.promise;
         },
-        getGames:function () {
+        getSavedGames:function () {
             var deferred = $q.defer();
-            track('request','php/local-fetchgames.php');
-            $http({ method: 'POST', url: 'php/local-fetchgames.php',}).
+            track('request','php/Controller.php?type=Game&action=loadSavedGames');
+            $http({ method: 'POST', url: 'php/Controller.php?type=Game&action=loadSavedGames',}).
             success(function(data, status, headers, config) {
-        	    if (data.length <1){
-        		    $http({ method: 'POST', url: 'php/local-savegames.php?target=Offer&method=findAll',}).
-                    success(function(data, status, headers, config) {
-        				  deferred.resolve(data);
-        			  });
-          		}
-          		else {
           			deferred.resolve(data);
-                }
-        	});
-        	return deferred.promise;
+
+        	  });
+        	 return deferred.promise;
         },
-        getFreshGames:function(){
+        refreshSavedGames:function(){
             var deferred = $q.defer();
-            track('request','php/local-savegames.php?target=Offer&method=findAll');
-            $http({ method: 'POST', url: 'php/local-savegames.php?target=Offer&method=findAll',}).
+            track('request','php/Controller.php?type=Game&action=refreshSavedGames');
+            $http({ method: 'POST', url: 'php/Controller.php?type=Game&action=refreshSavedGames',}).
             success(function(data, status, headers, config) {
               deferred.resolve(data);
             });
             return deferred.promise;
         },
-        getCurrentGame: function(fid){
+        getCurrentGame: function(alias){
             var deferred = $q.defer();
-            track('request','php/local-fetchcurrent.php?g='+fid);
-            $http({ method: 'POST', url: 'php/local-fetchcurrent.php?g='+fid}).
+            track('request','php/Controller.php?type=Game&action=getCurrentGame&alias='+alias);
+            $http({ method: 'POST', url: 'php/Controller.php?type=Game&action=getCurrentGame&alias='+alias}).
             success(function(data, status, headers, config) {
                 deferred.resolve(data);
             });
             return deferred.promise;
         },
-        getGameDetails:function(game){
+        loadHotGames:function(){
             var deferred = $q.defer();
-            track('request','php/mysql_getgamedetails.php?g='+game);
-            $http({ method: 'POST', url: 'php/mysql_getgamedetails.php?g='+game}).
+            track('request','php/Controller.php?type=Game&action=loadHotGames');
+            $http({ method: 'POST', url: 'php/Controller.php?type=Game&action=loadHotGames'}).
             success(function(data, status, headers, config) {
                 deferred.resolve(data);
             });
             return deferred.promise;
         },
-        getGameScreens:function(game){
-            var deferred = $q.defer();
-            track('request','php/mysql_listofss.php?g='+game);
-            $http({ method: 'POST', url: 'php/mysql_listofss.php?g='+game}).
-            success(function(data, status, headers, config) {
-                deferred.resolve(data);
-            });
-            return deferred.promise;
-        },
-        getHotGames:function(){
-            var deferred = $q.defer();
-            track('request','php/mysql_hotgames.php');
-            $http({ method: 'POST', url: 'php/mysql_hotgames.php'}).
-            success(function(data, status, headers, config) {
-                deferred.resolve(data);
-            });
-            return deferred.promise;
-        },
-        LoadSiteUsers: function(){
-          var deferred = $q.defer();
-          $http({method: 'POST', url: 'php/maintain.php?mode=user&type=load'}).
-          success(function(data, status, headers, config) {
-                    deferred.resolve(data);
-                    track('Users',data);
-          });
-          return deferred.promise;
-        }
     }
 });
 Game.factory('videoService', function ($q, $http) {
     return {
         getVideosOfGame:function(gameid, gamemongoid){
             var deferred = $q.defer();
-            track('request','php/local-savevideos.php?g='+gameid+'&gamemongoid='+gamemongoid);
-            $http({method: 'POST',url: 'php/local-savevideos.php?g='+gameid+'&gamemongoid='+gamemongoid}).
+            track('request','php/Controller.php?type=Video&action=getVideosOfGame&ids='+gameid+'&gamemongoid='+gamemongoid);
+            $http({method: 'POST',url: 'php/Controller.php?type=Video&action=getVideosOfGame&ids='+gameid+'&gamemongoid='+gamemongoid}).
             success(function(data, status, headers, config) {
                 deferred.resolve(data);
             });
@@ -159,17 +125,26 @@ Game.factory('videoService', function ($q, $http) {
         },
         getTrendingVideos:function(d) {
             var deferred = $q.defer();
-            track('request:', 'php/ho-getTrafficByDate.php?g='+d);
-            $http({ method: 'POST', url: 'php/ho-getTrafficByDate.php?g='+d,}).
+            track('request:', 'php/Controller.php?type=Video&action=getTrendingVideos&dates='+d);
+            $http({ method: 'POST', url: 'php/Controller.php?type=Video&action=getTrendingVideos&dates='+d,}).
             success(function(data, status, headers, config) {
               deferred.resolve(data);
             });
             return deferred.promise;
         },
+        // getNewestVideosO:function(d){
+        //     var deferred = $q.defer();
+        //     track('request:', 'php/ho-getLatest.php?g='+d);
+        //     $http({ method: 'POST', url: 'php/ho-getLatest.php?g='+d,}).
+        //     success(function(data, status, headers, config) {
+        //       deferred.resolve(data);
+        //     });
+        //     return deferred.promise;
+        // },
         getNewestVideos:function(d){
             var deferred = $q.defer();
-            track('request:', 'php/ho-getLatest.php?g='+d);
-            $http({ method: 'POST', url: 'php/ho-getLatest.php?g='+d,}).
+            track('request:', 'php/Controller.php?type=Video&action=getLatestVideos&dates='+d);
+            $http({ method: 'POST', url: 'php/Controller.php?type=Video&action=getLatestVideos&dates='+d,}).
             success(function(data, status, headers, config) {
               deferred.resolve(data);
             });
@@ -181,8 +156,8 @@ Game.factory('userService', function ($q, $http) {
     return {
         getUser:function () {
           var deferred = $q.defer();
-          track('request','php/local-user.php?type=get');
-          $http({ method: 'POST', url: 'php/local-user.php?type=get',}).
+          track('request','php/Controller.php?type=User&action=getUser');
+          $http({ method: 'POST', url: 'php/Controller.php?type=User&action=getUser',}).
           success(function(data, status, headers, config) {
                 user = data;
                 track('user in session', user);
@@ -190,40 +165,37 @@ Game.factory('userService', function ($q, $http) {
            });
            return deferred.promise;                
         },
-        checkUser:function(email,password){
+        signIn:function(user){
           var deferred = $q.defer();
-          track('request','php/ho-checkUser.php?email='+email+"&password="+password);
-          $http({ method: 'POST', url: 'php/ho-checkUser.php?email='+email+"&password="+password,}).
+          track('php/Controller.php?type=User&action=signIn&user='+JSON.stringify(user),user);
+          $http({ method: 'GET', url: 'php/Controller.php?type=User&action=signIn&user='+JSON.stringify(user)}).
           success(function(data, status, headers, config) {
                 deferred.resolve(data);
-              });
+          });
           return deferred.promise;
 
         },
-        setUser:function(email1,password1, id1, aff_id1){
+        signOut:function(){
           var deferred = $q.defer();
-          track('saving user', 'php/local-user.php?type=set&email='+email1+'&id='+id1+'&password='+password1+'&aff_id'+aff_id1);
-          $http({ method: 'POST', url: 'php/local-user.php?type=set&email='+email1+'&id='+id1+'&password='+password1+'&aff_id'+aff_id1,}).
+          $http({ method: 'GET', url: 'php/Controller.php?type=User&action=signOut'}).
           success(function(data, status, headers, config) {
                 deferred.resolve(data);
-                user = [{email:""+email1, id:""+id1, password:""+password1, aff_id:aff_id1 }];
-                return user;
           });
           return deferred.promise;
         },
-        getPlayNowLink:function(affiliate,offer){
+        getPlayNowLink:function(offer){
           var deferred = $q.defer();
-          track('request','php/ho-playnow.php?offer='+offer+"&affiliate="+affiliate);
-          $http({method: 'POST', url: 'php/ho-playnow.php?offer='+offer+"&affiliate="+affiliate}).
+          track('request','php/Controller.php?type=User&action=getPlayNowLink&offer_id='+offer);
+          $http({method: 'POST', url: 'php/Controller.php?type=User&action=getPlayNowLink&offer_id='+offer}).
           success(function(data, status, headers, config) {
                     deferred.resolve(data);
           });
           return deferred.promise;
         },
-        getReferralLink: function(user_id){
+        getMyReferrals: function(user_id){
           var deferred = $q.defer();
-          track('request','php/ho-referrallink.php?id='+user_id);
-          $http({method: 'POST', url: 'php/ho-referrallink.php?id='+user_id}).
+          track('request','php/Controller.php?type=User&action=getReferrals');
+          $http({method: 'POST', url: 'php/Controller.php?type=User&action=getReferrals'}).
           success(function(data, status, headers, config) {
                     deferred.resolve(data);
           });
@@ -233,9 +205,10 @@ Game.factory('userService', function ($q, $http) {
 });
 Game.factory('maintainService', function ($q, $http) {
   return {
-    deleteGenre:function (id) {
+    deleteGenre:function (g) {
       var deferred = $q.defer();
-      $http({method: 'POST', url: 'php/maintain.php?mode=genre&type=delete&id='+id}).
+      track('deleteGenre', 'php/Controller.php?type=Maintain&action=genre&subaction=delete&id='+g._id.$id )
+      $http({method: 'POST', url: 'php/Controller.php?type=Maintain&action=genre&subaction=delete&id='+g._id.$id}).
       success(function(data, status, headers, config) {
                 deferred.resolve(data);
       });
@@ -243,67 +216,69 @@ Game.factory('maintainService', function ($q, $http) {
     },
     addGenre:function(game){
       var deferred = $q.defer();
-      track('addgenre',game)
-      $http({method: 'POST', url: 'php/maintain.php?mode=genre&type=add&name='+game.genre_name+'&ini='+game.genre_initials}).
+      track('addgenre','php/Controller.php?type=Maintain&action=genre&subaction=add&genre_name='+game.genre_name+'&genre_initials='+game.genre_initials)
+      $http({method: 'POST', url: 'php/Controller.php?type=Maintain&action=genre&subaction=add&genre_name='+game.genre_name+'&genre_initials='+game.genre_initials}).
       success(function(data, status, headers, config) {
                 deferred.resolve(data);
       });
       return deferred.promise;
     },
-    addFeaturedGame: function(game, genre){
+    addFeaturedGame: function(game, genre_id){
       var deferred = $q.defer();
-      track('addfeat','php/maintain.php?mode=featured&type=add&name='+game.name+'&genre_id='+genre.genre_id)
-      $http({method: 'POST', url: 'php/maintain.php?mode=featured&type=add&name='+game.name+'&genre_id='+genre.genre_id}).
-      success(function(data, status, headers, config) {
-                deferred.resolve(data);
-      });
-      return deferred.promise;
-
-    },
-    deleteFeaturedGame: function(game_id){
-      var deferred = $q.defer();
-      track('deletefeat','php/maintain.php?mode=featured&type=delete&game_id='+game_id)
-      $http({method: 'POST', url: 'php/maintain.php?mode=featured&type=delete&game_id='+game_id}).
+      track('addfeat','php/Controller.php?type=Maintain&action=featured&subaction=add&name='+game.name+'&alias='+game.alias+'&genre_id='+genre_id)
+      $http({method: 'POST', url: 'php/Controller.php?type=Maintain&action=featured&subaction=add&name='+game.name+'&alias='+game.alias+'&genre_id='+genre_id}).
       success(function(data, status, headers, config) {
                 deferred.resolve(data);
       });
       return deferred.promise;
 
     },
-    setGamesToGenre: function(genre_name, games){
+    deleteFeaturedGame: function(game_id, genre_id){
       var deferred = $q.defer();
-      track('setgames','php/maintain.php?mode=games&type=set&name='+genre_name+"&games[]="+JSON.stringify(games))
-      $http({method: 'POST', url: 'php/maintain.php?mode=games&type=set&name='+genre_name+"&games[]="+JSON.stringify(games)}).
+      track('deletefeat','php/Controller.php?type=Maintain&action=featured&subaction=delete&game_id='+game_id+'&genre_id='+genre_id)
+      $http({method: 'POST', url: 'php/Controller.php?type=Maintain&action=featured&subaction=delete&game_id='+game_id+'&genre_id='+genre_id}).
       success(function(data, status, headers, config) {
                 deferred.resolve(data);
       });
       return deferred.promise;
+
     },
-    LoadSiteUsers: function(){
+    deleteSiteUsers: function(user){
       var deferred = $q.defer();
-      $http({method: 'POST', url: 'php/maintain.php?mode=user&type=load'}).
+      track('php/Controller.php?type=Maintain&action=user&subaction=delete&id='+user.affiliate_id);
+      $http({method: 'POST', url: 'php/Controller.php?type=Maintain&action=user&subaction=delete&id='+user.affiliate_id}).
       success(function(data, status, headers, config) {
                 deferred.resolve(data);
-                track('Users',data);
-      });
-      return deferred.promise;
-    },
-    deleteSiteUsers: function(aff_id){
-      var deferred = $q.defer();
-      $http({method: 'POST', url: 'php/maintain.php?mode=user&type=delete&id='+aff_id}).
-      success(function(data, status, headers, config) {
-                deferred.resolve(data);
-                track('Users',data);
       });
       return deferred.promise;
     },
     addSiteUsers: function(id){
       var deferred = $q.defer();
 
-      $http({method: 'POST', url: 'php/maintain.php?mode=user&type=add&id='+id}).
+      $http({method: 'POST', url: 'php/Controller.php?type=Maintain&action=user&subaction=add&id='+id}).
       success(function(data, status, headers, config) {
                 deferred.resolve(data);
-                 track('php/maintain.php?mode=user&type=add&id='+id, data);
+                 track('php/Controller.php?type=Maintain&action=user&subaction=add&id='+id, data);
+      });
+      return deferred.promise;
+    },
+    loadSiteUsers: function(){
+      var deferred = $q.defer();
+
+      $http({method: 'POST', url: 'php/Controller.php?type=Maintain&action=user&subaction=load'}).
+      success(function(data, status, headers, config) {
+                deferred.resolve(data);
+                 track('php/Controller.php?type=Maintain&action=user&subaction=load', data);
+      });
+      return deferred.promise;
+    },
+    removeLogo: function(game){
+      var deferred = $q.defer();
+
+      $http({method: 'GET', url: 'php/Controller.php?type=Maintain&action=removeLogo&game='+game}).
+      success(function(data, status, headers, config) {
+                deferred.resolve(data);
+                 track('php/Controller.php?type=Maintain&action=removeLogo&game='+game, data);
       });
       return deferred.promise;
     }
