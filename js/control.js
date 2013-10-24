@@ -32,10 +32,23 @@ function HeadController($scope, $http, $location, gamesService,  $rootScope, use
             $rootScope.games = data;
             $('#gamesPager').show();
             track('gamesonhead', $rootScope.games);
+            $rootScope.carousel =[];
+            for(var i=0; i < data.length;i=i+5){
+              arr = [];
+              arr['game1'] = data[i];
+              arr['game2'] = data[i+1];
+              arr['game3'] = data[i+2];
+              arr['game4'] = data[i+3];
+              arr['game5'] = data[i+4];
+              arr['game6'] = data[i+5];
+              $rootScope.carousel.push(arr);
+            }
+            track('carousel', $rootScope.carousel)
             gamesService.loadHotGames().then(function(data){ 
               track('hotgames', data);
               $rootScope.hgames = data;
             });
+
         });
 
         
@@ -121,20 +134,6 @@ function HomeController($scope, $http, gamesService, videoService, $rootScope, $
   // $('.wrapper').attr('style','padding-left: 0px;');
   // $('#side-id').hide();
   $scope.myInterval = 5000;
-  $scope.carousel = [];
-  var data = $scope.games;
-  var array = [];
-  for(var i=0; i < data.length;i=i+5){
-    arr = [];
-    arr['game1'] = data[i];
-    arr['game2'] = data[i+1];
-    arr['game3'] = data[i+2];
-    arr['game4'] = data[i+3];
-    arr['game5'] = data[i+4];
-    arr['game6'] = data[i+5];
-    $scope.carousel.push(arr);
-  }
-
   $scope.isHidden = true;
 
     $scope.sideshow = function(){ 
