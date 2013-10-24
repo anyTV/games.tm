@@ -139,8 +139,10 @@
               <div class="clearfix"></div>
             </section>
             <section class="window-body" >
-              <div class="logo-box">
-                <img id="logos" ng-src="upload/{{cg}}.png">
+              <div class="logo-box" ng-switch="cg.pic==''">
+                <img id="logos" ng-switch-when="true" src="http://placehold.it/175X150/131313/EEEEEE/&text=NO+LOGO">
+                <img id="logos" ng-switch-when="false" src="cg.pic">
+              </div>
                 <form method="POST" action="/php/Controller.php?type=Maintain&action=logo" enctype="multipart/form-data" id="photoForm">
                   <input type="hidden" name="gamealias" value="{{currentalias}}">
                   <input class="changeBtn" type="file" name="file">
