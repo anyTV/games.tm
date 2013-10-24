@@ -70,7 +70,7 @@
     }
     function addSiteUser($id){
         $mongo = new MongoConnector();
-        echo $mongo->addSiteUser(mysql_real_escape_string($id));
+        echo $mongo->addSiteUser(($id));
         // echo $mongo->loadSiteUsers();
     }
     function deleteSiteUser($user_id){
@@ -83,7 +83,7 @@
     }
     function addFeaturedGame($genre_id, $name, $alias){
         $mongo = new MongoConnector();
-        $game = array("name"=>mysql_real_escape_string($name),"alias"=>mysql_real_escape_string($alias));
+        $game = array("name"=>($name),"alias"=>($alias));
         echo json_encode($mongo->addFeaturedGame($genre_id,$game));
         // echo json_encode($mongo->getFeaturedOffers());
     }
@@ -92,7 +92,7 @@
         $mongo->removeGenre($genre_id);
     }
     function addGenre($name, $initials){
-        $genre = array("name"=>mysql_real_escape_string($name),"initials"=>mysql_real_escape_string($initials));
+        $genre = array("name"=>($name),"initials"=>($initials));
         $mongo = new MongoConnector();
         echo json_encode($mongo->addGenre($genre));
     }
@@ -127,7 +127,7 @@
     }
     function loadHotGames(){
         $game = new Game();
-        echo json_encode($game->loadHotGames());
+        echo urldecode(json_encode($game->loadHotGames()));
     }
     function loadDefaultGames(){
         $game = new Game();
