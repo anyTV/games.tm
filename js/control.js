@@ -29,9 +29,7 @@ function HeadController($scope, $http, $location, gamesService,  $rootScope, use
         });
 
         gamesService.getSavedGames().then(function(data){
-            $rootScope.games = data;
-            $('#gamesPager').show();
-            track('gamesonhead', $rootScope.games);
+            
             $rootScope.carousel =[];
             for(var i=0; i < data.length;i=i+5){
               arr = [];
@@ -44,6 +42,9 @@ function HeadController($scope, $http, $location, gamesService,  $rootScope, use
               $rootScope.carousel.push(arr);
             }
             track('carousel', $rootScope.carousel)
+            $rootScope.games = data;
+            track('gamesonhead', $rootScope.games);
+            $('#gamesPager').show();
             gamesService.loadHotGames().then(function(data){ 
               track('hotgames', data);
               $rootScope.hgames = data;
@@ -416,10 +417,11 @@ function MaintainController($scope, $http, maintainService, gamesService, $rootS
 
       gamesService.getSavedGames().then(function(data){
           $rootScope.games = data;
-          $('#gamesPager').show();
+          $('#games').show();
           track('gamesonhead', $rootScope.games);
           gamesService.loadHotGames().then(function(data){ 
             track('hotgames', data);
+            $('#refreshGames1').button('reset');
             $rootScope.hgames = data;
           });
       });
