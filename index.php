@@ -5,7 +5,7 @@ header('Content-Type: text/html; charset=UTF-8');
 ?>
 <html ng-app="Game">
 <head>
-  <TITLE>Games on AnyTV!</TITLE>
+  <TITLE>Games on any.TV!</TITLE>
   <meta property="og:title" content="Games on AnyTV!">
   <meta property="og:type" content="article">
   <meta property="og:url" content="http://www.games.tm">
