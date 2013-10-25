@@ -325,7 +325,7 @@
     ::-webkit-scrollbar-corner { background-color: whitesmoke; } 
     ::-webkit-scrollbar { width: 15px; }
 /*CAROUSEL*/
-    .gameimgbox2{ float: left; width: 280; font-size: 12px; }
+    .gameimgbox2{ float: left; width: 280; height:293; font-size: 12px; }
     .carousel { width: 100%; text-align: center; padding-bottom: 60;}
     .carousel-inner { width: 840; margin: 0 auto; }
     .carousel-indicators { bottom: 30px; }

@@ -56,8 +56,8 @@
               <slide ng-repeat="g in carousel" active="slide.active">
                 <!-- <div class='gameimgbox ' ng-repeat="g in (games | orderBy: 'name':false | startFrom:currentPage2*pageSize2 | limitTo:pageSize2)" > -->
                 <section class="pull-left" >
-                  <div class='gameimgbox2 ' ng-hide="g.game1==null">
-                    <a href="/#/game/{{g.game1.fid}}" class="carougame">
+                  <div class='gameimgbox2 '>
+                    <a href="/#/game/{{g.game1.fid}}" class="carougame"  ng-hide="g.game1==null">
                       <div class="photo" ng-switch="g.game1.pic.indexOf('.')==-1"> 
                         <img id="gamepic" ng-switch-when="true" src="http://placehold.it/256x256/131313/EEEEEE/&text=N/A" >
                         <img id="gamepic" ng-switch-when="false" ng-src="/upload/{{g.game1.pic}}">
@@ -65,8 +65,8 @@
                       <p class="boxgamename">{{g.game1.name}}</p>
                     </a>
                   </div>
-                  <div class='gameimgbox2 ' ng-hide="g.game2==null">
-                    <a href="/#/game/{{g.game2.fid}}" class="carougame">
+                  <div class='gameimgbox2 '>
+                    <a href="/#/game/{{g.game2.fid}}" class="carougame" ng-hide="g.game2==null">
                       <div class="photo" ng-switch="g.game2.pic.indexOf('.')==-1"> 
                         <img id="gamepic" ng-switch-when="true" src="http://placehold.it/256x256/131313/EEEEEE/&text=N/A" >
                         <img id="gamepic" ng-switch-when="false" ng-src="/upload/{{g.game2.pic}}">
@@ -74,8 +74,8 @@
                       <p class="boxgamename">{{g.game2.name}}</p>
                     </a>
                   </div>
-                  <div class='gameimgbox2 ' ng-hide="g.game3==null">
-                    <a href="/#/game/{{g.game3.fid}}" class="carougame">
+                  <div class='gameimgbox2 '>
+                    <a href="/#/game/{{g.game3.fid}}" class="carougame"  ng-hide="g.game3==null">
                       <div class="photo" ng-switch="g.game3.pic.indexOf('.')==-1"> 
                         <img id="gamepic" ng-switch-when="true" src="http://placehold.it/256x256/131313/EEEEEE/&text=N/A" >
                         <img id="gamepic" ng-switch-when="false" ng-src="/upload/{{g.game3.pic}}">
@@ -83,8 +83,8 @@
                        <p class="boxgamename">{{g.game3.name}}</p>
                     </a>
                   </div>
-                  <div class='gameimgbox2 ' ng-hide="g.game4==null">
-                    <a href="/#/game/{{g.game4.fid}}" class="carougame">
+                  <div class='gameimgbox2 '>
+                    <a href="/#/game/{{g.game4.fid}}" class="carougame" ng-hide="g.game4==null">
                       <div class="photo" ng-switch="g.game4.pic.indexOf('.')==-1"> 
                         <img id="gamepic" ng-switch-when="true" src="http://placehold.it/256x256/131313/EEEEEE/&text=N/A" >
                         <img id="gamepic" ng-switch-when="false" ng-src="/upload/{{g.game4.pic}}">
@@ -92,8 +92,8 @@
                        <p class="boxgamename">{{g.game4.name}}</p>
                     </a>
                   </div>
-                  <div class='gameimgbox2 ' ng-hide="g.game5==null">
-                    <a href="/#/game/{{g.game5.fid}}" class="carougame">
+                  <div class='gameimgbox2 '>
+                    <a href="/#/game/{{g.game5.fid}}" class="carougame" ng-hide="g.game5==null">
                       <div class="photo" ng-switch="g.game5.pic.indexOf('.')==-1"> 
                         <img id="gamepic" ng-switch-when="true" src="http://placehold.it/256x256/131313/EEEEEE/&text=N/A" >
                         <img id="gamepic" ng-switch-when="false" ng-src="/upload/{{g.game5.pic}}">
@@ -101,8 +101,8 @@
                        <p class="boxgamename">{{g.game5.name}}</p>
                     </a>
                   </div>
-                  <div class='gameimgbox2 ' ng-hide="g.game6==null">
-                    <a href="/#/game/{{g.game6.fid}}" class="carougame">
+                  <div class='gameimgbox2 ' >
+                    <a href="/#/game/{{g.game6.fid}}" class="carougame" ng-hide="g.game6==null">
                       <div class="photo" ng-switch="g.game6.pic.indexOf('.')==-1"> 
                         <img id="gamepic" ng-switch-when="true" src="http://placehold.it/256x256/131313/EEEEEE/&text=N/A" >
                         <img id="gamepic" ng-switch-when="false" ng-src="/upload/{{g.game6.pic}}">
