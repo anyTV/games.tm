@@ -33,12 +33,19 @@ function HeadController($scope, $http, $location, gamesService,  $rootScope, use
             $rootScope.carousel =[];
             for(var i=0; i < data.length;i=i+5){
               arr = [];
-              arr['game1'] = data[i];
-              arr['game2'] = data[i+1];
-              arr['game3'] = data[i+2];
-              arr['game4'] = data[i+3];
-              arr['game5'] = data[i+4];
-              arr['game6'] = data[i+5];
+              if(data[i]!=null)
+                arr['game1'] = data[i];
+              if(data[i+1]!=null)
+                arr['game2'] = data[i+1];
+              if(data[i+2]!=null)
+                arr['game3'] = data[i+2];
+              if(data[i+3]!=null)
+                arr['game4'] = data[i+3];
+              if(data[i+4]!=null)
+                arr['game5'] = data[i+4];
+              if(data[i+5]!=null)
+                arr['game6'] = data[i+5];
+              if(arr != null)
               $rootScope.carousel.push(arr);
             }
             track('carousel', $rootScope.carousel)
