@@ -6,14 +6,14 @@ header('Content-Type: text/html; charset=UTF-8');
 <html ng-app="Game">
 <head>
   <TITLE>Games on any.TV!</TITLE>
-  <meta property="og:title" content="Games on AnyTV!">
+  <meta property="og:title" content="Games on any.TV!">
   <meta property="og:type" content="article">
   <meta property="og:url" content="http://www.games.tm">
   <meta property="og:image" content="http://www.games.tm/img/games-home_logo.png">
   <meta property="og:site_name" content="Games">
   <meta property="og:description" content="Play free games! Earn about $1.00 every time someone new plays a game after watching your video or livestream!">
   <meta name="Description" content="Play free games! Earn about $1.00 every time someone new plays a game after watching your video or livestream!">
-  <meta name="keywords" content="Games, GamesTeam, GamesTM AnyTV, Gameplay, Game Videos" />
+  <meta name="keywords" content="Games, GamesTeam, GamesTM any.TV, Gameplay, Game Videos" />
 
 
   <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> -->
@@ -41,9 +41,9 @@ header('Content-Type: text/html; charset=UTF-8');
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-                <img src="/img/logo.png" alt="Games on anyTV!" class="logo" ng-click="showSide(); clicked =true;">
+                <img src="/img/logo.png" alt="Games on any.TV!" class="logo" ng-click="showSide(); clicked =true;">
               <a class="navbar-brand" >
-                <a href="/"><img src="/img/logotext.png" alt="Games on anyTV!" >
+                <a href="/"><img src="/img/logotext.png" alt="Games on any.TV!" >
               <!-- </a><a href="/"> -->
                 </a>
               </a>
@@ -170,7 +170,7 @@ header('Content-Type: text/html; charset=UTF-8');
                   </div>
                   <button data-loading-text="Signing in..." id="loginbtn1" class="btn btn-primary" ng-click="Login1()">Sign in</button>
                   <span class="pull-right">
-                  New to any.tv? <a class="btn btn-danger" href="http://www.dashboard.tm/signup/1000"> Create an account</a>
+                  New to any.TV? <a class="btn btn-danger" href="http://www.dashboard.tm/signup/1000"> Create an account</a>
                   </span>
                 </form>
               </div>
