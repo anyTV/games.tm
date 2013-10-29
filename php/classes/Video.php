@@ -23,6 +23,9 @@
                                       ,'values' => array('%v=%')
                                       ))
                                     ,'sort' => array('Stat.clicks' => 'DESC')), false);
+            if(empty($arr->data)){
+              return false;
+            }
             $queryId = array();
             $vidstats = array();
             $clicks = 0; $conversions; $oldclicks = 0; $oldconversions = 0; $ctr = 0;

@@ -118,7 +118,15 @@
     function getVideosOfGame($ids, $mongoid){
         $ids = explode(',',$ids);
         $video = new Video();
-        echo json_encode($video->getVideosOfGame($ids, $mongoid),true);
+
+        $videos = $video->getVideosOfGame($ids, $mongoid);
+        if($videos == false){
+            echo "";
+        }
+        else{
+            
+            echo json_encode($videos,true);
+        }
     }
     // GAME
     function getCurrentGame($alias){

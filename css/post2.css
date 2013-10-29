@@ -29,11 +29,12 @@
         float: left;
         clear: none;
         width: 100px;
-        padding: 5 10px;
+        padding: 20 10px;
         text-align: center;
         font-family: verdana !important; 
         font-size: 11px;
     }
+    .othersites>li>a:hover { background-color: transparent; color: black; }
     .sitelogos { width: 57; height: 57; }
     .searchbar { height: 30px; }
     .navbar-form { margin-top: 10px; }
