@@ -108,7 +108,7 @@ header('Content-Type: text/html; charset=UTF-8');
                           <a href="http://www.youtube.com/anyTVnetwork">
                             <img class='sitelogos' src="img/favicon/youtube.png">
                             <div>
-                                YouTube {{user.email}}
+                                YouTube 
                             </div>
                           </a>
                           <a href="http://www.twitter.com/anyTVnetwork">
