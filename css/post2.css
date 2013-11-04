@@ -13,12 +13,14 @@
     .navbar-default .navbar-nav>li>a:hover { color: white; }
     .sites-toggle { padding: 13px 10 !important; }
     .navbar-default .navbar-nav>li>a { color:#ccc; }
-    .sign-in { margin: 8px; padding: 4px 12px !important; width: 135px; color: white !important; }
+    .promo { background-color: #FF3333; border-color: #000000; }
+    .promo:hover { background-color: #CC0000; border-color: #000000;}
+    .sign-in { margin: 8px; padding: 4px 12px !important; color: white !important; }
     .sign-in:hover { background: #428bca !important;}
-    .navbar-form { padding-left: 120; }
+    .navbar-form { padding-left: 106; }
     .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus { background: transparent !important; color:white !important;  }
     .navbar-default .navbar-nav>.close>a, .navbar-default .navbar-nav>.close>a:hover, .navbar-default .navbar-nav>.close>a:focus { background: transparent !important; color:white !important;  }
-    .referlink { margin: 7 0; }
+    .referlink { margin: 7 5; }
     #referlink { margin: 5 200; }
     .dropdown-menu { padding: 10; color:black; }
     .typer { width: 305px;}
@@ -200,7 +202,7 @@
 /*body*/
     .loader-videos     { width: 30; margin: 230 auto;  }
     .no-videos         { width: 410; margin: 230 auto; font-size: 25; font-weight: bold;}
-    #ntvloader         { width: 485; margin: 230 auto; font-size: 25; font-weight: bold;}
+    #ntvloader         { width: 595; margin: 230 auto; font-size: 25; font-weight: bold;}
     .video-thumb       { margin-right: 5px; }
     .video-detail      { width: auto; }
     .videolist         { padding: 0px; height: 100%;  background: rgb(245, 245, 245); color: rgb(34, 34, 34);}
@@ -217,8 +219,7 @@
     .picture           { width: 900; height: 380 !important;}
     .piccontainer      { width: 900; margin: 0 auto;}
     .image             { padding: 10 0; width: 200; margin: 0 auto; }
-    .gamebox           {height: auto; color:white; border-radius:0px; width: 100%; margin-bottom: 0px;color:#333 !important;
-    }
+    .gamebox           { height: auto; color:white; border-radius:0px; width: 100%; margin-bottom: 0px;color:#333 !important; }
     .gameintro{ padding: 5px; }
     .gamename {
         font-size: 25;
