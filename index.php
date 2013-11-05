@@ -82,7 +82,7 @@ header('Content-Type: text/html; charset=UTF-8');
                                 Community
                             </div>
                           </a>
-                          <a href="http://www.any.tv">
+                          <a href="http://www.heartbeat.tm">
                             <img class='sitelogos' src="img/favicon/hb_favicon.png">
                             <div>
                                 Heartbeat
@@ -129,7 +129,7 @@ header('Content-Type: text/html; charset=UTF-8');
                   <li><button onclick="location.href = 'http://www.any.tv/upload/'" class="btn btn-primary referlink promo" >Submit your videos! (promo)</button></li>
                   <li><button data-toggle="modal" href=".refModal" ng-show="user.email!=''" class="btn btn-primary referlink" ng-click="referLink(user.id)">Get your Refer-a-Friend link</button></li>
                   <li class="dropdown">
-                      <a href=".myModal1"  data-toggle="modal" ng-show="user.email==''" class="btn btn-primary referlink">Sign in</a>
+                      <a href=".myModal1"  data-toggle="modal" ng-show="user.email==''" class="btn btn-primary sign-in">Sign in</a>
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-show="user.email!=''">{{user.email}}<b class="caret"></b></a>
                       <ul class="dropdown-menu user-menu">
                           <li><a href="/php/form-post.php" target="_blank" class="">Check Earnings</a></li>

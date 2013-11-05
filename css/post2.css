@@ -15,7 +15,7 @@
     .navbar-default .navbar-nav>li>a { color:#ccc; }
     .promo { background-color: #FF3333; border-color: #000000; }
     .promo:hover { background-color: #CC0000; border-color: #000000;}
-    .sign-in { margin: 8px; padding: 4px 12px !important; color: white !important; }
+    .sign-in { margin: 9px; padding: 4px 12px !important; color: white !important; }
     .sign-in:hover { background: #428bca !important;}
     .navbar-form { padding-left: 106; }
     .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus { background: transparent !important; color:white !important;  }
