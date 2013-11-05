@@ -43,7 +43,7 @@ header('Content-Type: text/html; charset=UTF-8');
               </button>
                 <img src="/img/logo.png" alt="Games on any.TV!" class="logo" ng-click="showSide(); clicked =true;">
               <a class="navbar-brand" >
-                <a href="/"><img src="/img/logotext.png" alt="Games on any.TV!" >
+                <a href="#/"><img src="/img/logotext.png" alt="Games on any.TV!" >
               <!-- </a><a href="/"> -->
                 </a>
               </a>
