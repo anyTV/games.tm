@@ -1,4 +1,4 @@
-<div class="home" id="Home" ng-controller="HomeController">
+<div class="home" id="Home" ng-controller="HomeController" >
 <!--   <article class="info-message" id="info-message">
     <div class="jumbotron">
         <h1>Welcome to Games Team!</h1>
@@ -120,7 +120,7 @@
       </article>
     </tab>
 
-    <tab select='changeDate(true);' tooltip-placement="top" tooltip-html-unsafe="Videos getting clicks on their Play Now links.">
+    <tab select="changeDate(true);" tooltip-placement="top" tooltip-html-unsafe="Videos getting clicks on their Play Now links.">
       <tab-heading>Trending Videos &nbsp;<span class='glyphicon glyphicon-info-sign'></span> </tab-heading>
       <article class="panel-success" id="datesearch"  >
           <div class="gametitle panel-success">
@@ -166,7 +166,7 @@
           </div>
       </article>
     </tab>
-    <tab select="LoadNewVideos()" tooltip-placement="top" tooltip="New Videos getting clicks on their Play Now links.">
+    <tab select="LoadNewVideos();" tooltip-placement="top" tooltip="New Videos getting clicks on their Play Now links.">
       <tab-heading>Newest Videos &nbsp;<span class='glyphicon glyphicon-info-sign'></span> </tab-heading>
       
       <article class="panel-success" id="datesearch">
@@ -196,6 +196,47 @@
               </div>
               <div style="clear:both"></div>
             </div>
+          </div>
+      </article>
+    </tab>
+    <!-- <tab select="LoadMyVideos()" ng-show="user.email!=''" tooltip-placement="top" tooltip="Your videos getting clicks on their Play Now Links."> -->
+    <tab select="LoadMyVideos();" disabled = "user.email==''" tooltip-placement="top" tooltip="Your videos getting clicks on their Play Now Links.">
+      <tab-heading>My Videos &nbsp;<span class='glyphicon glyphicon-info-sign'></span> </tab-heading>
+      
+      <article class="panel-success" id="datesearch">
+          <div class="gametitle panel-success">
+            <form class= "pull-left form-inline search-form"> 
+                <input type="text" class='form-control search-video search-control' ng-model="search.snippet.channelTitle"  size="30" placeholder="Search video here.">
+                Sort: <select class="form-control gamesort2" ng-model="mvCurrentSort" ng-options="item as item.sortname for item in sortBy"></select>
+            </form>
+
+            <div style="clear:both"></div>
+          </div>
+          <div class='loader-videos' id='mvLoader'><img src="img/ajax-loader.gif"></div>
+          <div class='no-videos' id='nmvLoader' ng-show="myvideos=='false'">No videos found on your account yet.</div>
+          <div class="video-container" ng-show="myvideos!='false'">
+            <div class="video" ng-repeat="video in ((myvideos | filter:search.snippet.channelTitle | orderBy:mvCurrentSort.sorttext:mvCurrentSort.reverse | startFrom:currentPage3*pageSize3 | limitTo:pageSize3)) " >
+              <div class="video-thumb pull-left">
+                 <a href="http://www.youtube.com/watch?v={{video.id}}" target="_blank"> <img ng-src="{{video.snippet.thumbnails.default.url}}" /></a></div>
+              <div class="video-detail pull-left">
+                <ul class="list-unstyled video-list">
+                  <li><span ng-class="{true:'badge',false:''}[nvCurrentSort.currentclass=='title']"><a target="_blank" href="http://www.youtube.com/watch?v={{video.id}}">{{video.snippet.title}}</a></span></li>
+
+                  <li>by: <a href="http://www.youtube.com/user/{{video.snippet.channelTitle}}">{{video.snippet.channelTitle}}</a>
+                   - <span ng-class="{true:'badge',false:''}[nvCurrentSort.currentclass=='view']">{{formatMoney(video.statistics.viewCount)}} YouTube views - </span> 
+                   <span ng-class="{true:'badge',false:''}[nvCurrentSort.currentclass=='click']" tooltip-placement="right" tooltip-html-unsafe="{{trendOver}}" ng-mouseover="breakdown(video.stat.Sources)"> {{video.stat.clicks}} Popularity <span class='glyphicon glyphicon-info-sign'></span></span>
+                  </li>
+                  <li>Uploaded: <span ng-class="{true:'badge',false:''}[nvCurrentSort.currentclass=='date']">{{timeago(video.snippet.publishedAt)}}</span></li>
+                </ul>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+          </div>
+
+          <div class='pagers  ' id="mvPager"  >
+              <input type="button" class="btn btn-default" ng-disabled="currentPage3 == 0" ng-click="currentPage3=currentPage3-1" value="Previous"/>
+              {{currentPage3+1}}/{{numberOfPages3()}}
+              <input type="button" class="btn btn-default" ng-disabled="currentPage3 >= myvideos.length/pageSize3 - 1" ng-click="currentPage3=currentPage3+1" value="Next"/>
           </div>
       </article>
     </tab>

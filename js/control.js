@@ -172,6 +172,44 @@ function HomeController($scope, $http, gamesService, videoService, $rootScope, $
                       ,{sortname: 'Published At - Descending',sorttext:'snippet.publishedAt',reverse:true, currentclass: 'date'}
                       ,{sortname: 'Published At - Ascending',sorttext:'snippet.publishedAt',reverse:false, currentclass: 'date'}  
                      ];
+
+    // MY VIDEOS
+    $scope.mvCurrentSort = $scope.sortBy[0];
+    $scope.myvideos = [];
+    $scope.currentPage3 = 0;
+    $scope.pageSize3 = 10;
+    $scope.num3 = 0;
+    $scope.numberOfPages3=function(){ return Math.ceil($scope.myvideos.length/$scope.pageSize3); }
+    
+    $scope.LoadMyVideos = function(){
+      $scope.myvideos = [];
+      $('#nvLoader').hide();
+      $('#nvPager').hide();
+      $('#tvLoader').hide();
+      $('#tvPager').hide();
+      $('#mvLoader').show();
+      $('#mvPager').hide();
+      track('user',$scope.user)
+      if($scope.user.email!=''){
+        videoService.getVideosOfUser($scope.user.affiliate_id).then(function(data){
+                $('#mvLoader').hide();
+                $scope.myvideos = data;
+                if(data=='false'){
+                  
+                  $('#mvPager').hide();
+                }
+                else{
+                  $('#mvPager').show();
+                  track('myvideos', data);
+                  for(var v in $scope.myvideos){
+                    $scope.myvideos[v].statistics.viewCount = parseInt($scope.myvideos[v].statistics.viewCount);
+                  }
+                  
+                }
+            });
+      }
+    }
+
     // TREND
 
     $scope.tvCurrentSort =  $scope.sortBy[0];
@@ -190,6 +228,8 @@ function HomeController($scope, $http, gamesService, videoService, $rootScope, $
         $('#nvPager').hide();
         $('#tvLoader').show();
         $('#tvPager').hide();
+        $('#mvLoader').hide();
+        $('#mvPager').hide();
         var r = "";
         var f = $scope.dt1;
         var t = $scope.dt2;
@@ -265,6 +305,8 @@ function HomeController($scope, $http, gamesService, videoService, $rootScope, $
         $('#nvPager').hide();
         $('#tvLoader').hide();
         $('#tvPager').hide();
+        $('#mvLoader').hide();
+        $('#mvPager').hide();
       }
       else{
         $('#nvLoader').hide();

@@ -31,6 +31,7 @@
                     case 'getVideosOfGame': getVideosOfGame($_GET['ids'], $_GET['gamemongoid']); break;
                     case 'getTrendingVideos': getTrendingVideos($_GET['dates']); break;
                     case 'getLatestVideos': getLatestVideos($_GET['dates']); break;
+                    case 'getVideosOfUser': getVideosOfUser($_GET['affiliate_id']); break;
                 }
                 break;
             case 'Maintain':
@@ -105,6 +106,10 @@
         $mongo->removelogo($_GET['game']);
     }
     // VIDEOS
+    function getVideosOfUser($affiliate_id){
+        $video = new Video();
+        echo json_encode($video->getVideosOfUser($affiliate_id));
+    }
     function getTrendingVideos($dates){
         $dates = explode(',', $dates);
         $video = new Video();

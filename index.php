@@ -61,7 +61,7 @@ header('Content-Type: text/html; charset=UTF-8');
               </form>
               <ul class="nav navbar-nav navbar-right">
                   <li>
-                      <a href="#" class="sites-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-th"></i></a>
+                      <a href="#" class="sites-toggle" data-toggle="dropdown"><img src="img/th.png"></a>
                       <ul class="dropdown-menu othersites arrow_box">
                         <li>
                           <a href="http://www.dashboard.tm">
@@ -126,7 +126,7 @@ header('Content-Type: text/html; charset=UTF-8');
                         </li>
                       </ul>
                   </li>
-                  <li><button onclick="location.href = 'http://www.any.tv/upload/'" class="btn btn-primary referlink promo" >Submit your videos! (promo)</button></li>
+                  <li><button onclick="location.href = 'http://www.any.tv/upload/'" class="btn btn-primary referlink promo" ><i class="glyphicon glyphicon-upload"></i> Submit your videos! (earn $5)</button></li>
                   <li><button data-toggle="modal" href=".refModal" ng-show="user.email!=''" class="btn btn-primary referlink" ng-click="referLink(user.id)">Get your Refer-a-Friend link</button></li>
                   <li class="dropdown">
                       <a href=".myModal1"  data-toggle="modal" ng-show="user.email==''" class="btn btn-primary sign-in">Sign in</a>
@@ -232,7 +232,7 @@ header('Content-Type: text/html; charset=UTF-8');
                         </a>
                     </div>
                     <div id="collapse{{$index}}" class=" panel-collapse collapse featured-box-content ">
-                        <a href="#/game/{{game.alias}}" ng-repeat="game in g.games" ng-click="closeOthers();game.active = !game.active;" ng-class="{true:'hotgame-item-active',false:'hotgame-item'}[game.active]"> &nbsp; {{game.name}}<BR></a>
+                        <a href="#/game/{{game.alias}}" ng-repeat="game in g.games | orderBy:'name':false;" ng-click="closeOthers();game.active = !game.active;" ng-class="{true:'hotgame-item-active',false:'hotgame-item'}[game.active]"> &nbsp; {{game.name}}<BR></a>
                     </div>
                 </div>
                 <div class="panel featured-box" >

@@ -132,15 +132,15 @@ Game.factory('videoService', function ($q, $http) {
             });
             return deferred.promise;
         },
-        // getNewestVideosO:function(d){
-        //     var deferred = $q.defer();
-        //     track('request:', 'php/ho-getLatest.php?g='+d);
-        //     $http({ method: 'POST', url: 'php/ho-getLatest.php?g='+d,}).
-        //     success(function(data, status, headers, config) {
-        //       deferred.resolve(data);
-        //     });
-        //     return deferred.promise;
-        // },
+        getVideosOfUser:function(affiliate_id){
+            var deferred = $q.defer();
+            track('request:', 'php/Controller.php?type=Video&action=getVideosOfUser&affiliate_id='+affiliate_id);
+            $http({ method: 'POST', url: 'php/Controller.php?type=Video&action=getVideosOfUser&affiliate_id='+affiliate_id,}).
+            success(function(data, status, headers, config) {
+              deferred.resolve(data);
+            });
+            return deferred.promise;
+        },
         getNewestVideos:function(d){
             var deferred = $q.defer();
             track('request:', 'php/Controller.php?type=Video&action=getLatestVideos&dates='+d);
