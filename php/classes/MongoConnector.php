@@ -9,12 +9,8 @@
         protected $_featuredoffers;
         protected $_ho;
         public function __construct(){
-            if ($_SERVER['HTTP_HOST'] == 'www.games.tm'){
-                $this->_m = new MongoClient(); 
-            }
-            else{
-                $this->_m = new MongoClient(); 
-            }
+            require('mongo.conf');
+            // var_dump($this->m);
             $this->_ho = new HasOffers();
             $this->_games = $this->_m->games->hasoffers;
             $this->_siteusers = $this->_m->games->_siteusers;

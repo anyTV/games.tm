@@ -50,6 +50,14 @@ function HeadController($scope, $http, $location, gamesService,  $rootScope, use
             }
             track('carousel', $rootScope.carousel)
             $rootScope.games = data;
+
+            if(data==null){
+              gamesService.refreshSavedGames().then(function(data){
+                  $rootScope.games = data;
+                  $('#games').show();
+                  track('gamesonhead', $rootScope.games);
+              });
+            }
             track('gamesonhead', $rootScope.games);
             $('#gamesPager').show();
             gamesService.loadHotGames().then(function(data){ 
