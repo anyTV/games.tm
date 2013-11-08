@@ -222,7 +222,7 @@ header('Content-Type: text/html; charset=UTF-8');
                             <div>
                                 <span class='pull-left' tooltip-placement="right" tooltip="{{g.genre_name}}">
                                     <i class="glyphicon glyphicon-fire {{{true:'burn',false:''}[g.burn]}}"></i>
-                                    &nbsp;{{g.genre_initials}} 
+                                    &nbsp;HOT {{g.genre_initials}} 
                                 </span>
                                 <span class='pull-right burn'>
                                     {{g.games.length}}
