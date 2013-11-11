@@ -81,6 +81,7 @@ function HeadController($scope, $http, $location, gamesService,  $rootScope, use
           $scope.user.email = "";
           $('#loginform').show();
           $('#waitform').hide();
+          location.href = "/";
           // $location.path('/');
         });
     }

@@ -135,7 +135,7 @@ header('Content-Type: text/html; charset=UTF-8');
                           <li><a href="/php/form-post.php" target="_blank" class="">Check Earnings</a></li>
                           <li><a href="#/referrals" class="">My Referrals</a></li>
                           <li><a href="#/maintainance" target='_blank' class="" ng-show="user.admin" ng-click="">Site Maintenance</a></li>
-                          <li><a href="/" ng-click="Signout()" class="">Sign out</a></li>
+                          <li><a ng-click="Signout()" class="">Sign out</a></li>
                       </ul>
                   </li>
               </ul>

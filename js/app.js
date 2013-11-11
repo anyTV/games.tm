@@ -30,7 +30,6 @@ function copy(id, tocopy){
            },
            afterCopy: function(){
             $(tocopy).attr('class','form-control text-center btn-success');
-            $(tocopy).val($(tocopy).val()+' - Copied');
            }
         });
       // }
@@ -47,7 +46,6 @@ function copy2(id, tocopy){
            },
            afterCopy: function(){
             $(tocopy).attr('class','form-control text-center btn-success');
-            $(tocopy).val($(tocopy).val()+' - Copied');
            }
         });
       // }
