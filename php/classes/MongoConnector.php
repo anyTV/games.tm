@@ -59,13 +59,17 @@
             return $cursor;
         }
         // VIDEOS
-        function saveVideosToGame($videos, $id){
+        function saveVideosToGame($id, $videos){
             $document = array(
                       '$set' => array(
                                   "videos" => $videos
                           )
                       );
             $res = $this->_games->update(array("_id"=>$id),$document);
+            $cursor = $this->_games->findOne(array("_id"=>$id));
+            // var_dump($id);
+            // echo 'haha';
+            // var_dump($cursor);
         }
         // MAINTAINANCE
         function saveLogos(){

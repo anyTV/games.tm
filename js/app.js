@@ -6,6 +6,7 @@ var Game = angular.module('Game', ['ui.bootstrap.tpls', 'ui.bootstrap']  )
          when("/maintainance/:message", {templateUrl:'views/maintain.php'}).
          when("/settings/:shit", {templateUrl:'settings.html'}).
          when("/game/:alias", {templateUrl:'views/game.php'}).
+         when("/game/:alias/:popup", {templateUrl:'views/game.php'}).
          when("/referrals/", {templateUrl:'views/referral.php'});
   }]);
 

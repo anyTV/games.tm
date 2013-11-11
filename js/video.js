@@ -22,6 +22,7 @@ function VideoController($scope, $http, $routeParams, gamesService, userService,
             return w;
         });
     };
+
     $scope.Login = function (email, password) {
             $scope.loginmessage.message ='';
             $scope.loginmessage.cls = 'logmess';
@@ -117,51 +118,7 @@ function VideoController($scope, $http, $routeParams, gamesService, userService,
         };
         return myarray;
     }
-    gamesService.getCurrentGame($routeParams.alias).then(function(data){
-                $('#gamesPager').hide();
-                $rootScope.currentgame = $scope.currentgame = data;
-                $scope.currentgame.pay = parseFloat($scope.currentgame.pay);
-                // var ctri, ctra = 0;
-                // if($scope.currentgame.state =='paused'){ ctri++; $scope.currentgame.realstate = "paused" }
-                // else if($scope.currentgame.pay != 0){ ctra++; $scope.currentgame.realstate = "active" }
-                // else{ $scope.currentgame.realstate = "paused" }  
 
-                $scope.countries = $scope.currentgame.country;
-                $scope.countries = $scope.arrangeCountries($scope.currentgame.country);
-                track('currentgame:', $scope.currentgame);
-                track("countries", $scope.countries);
-                if($scope.currentgame.videos.length == 0){
-                    videoService.getVideosOfGame($scope.currentgame.id,$scope.currentgame._id.$id).then(function(data){
-                        $scope.currentgame.videos = data;
-                        $scope.currentSort = $scope.sortBy[0];
-                        if($scope.currentgame.videos.length == 0){
-                            $('.no-videos').show();
-                            $('#gamesPager').hide();
-                        }
-                        else{
-                            $('.no-videos').hide();
-                            $('#gamesPager').show(); 
-                        }
-                        $('.loader-videos').hide();
-                    });
-                }
-                else{
-                    $scope.currentgame.videos = $scope.currentgame.videos;
-                    if($scope.currentgame.videos.length == 0){
-                        $('.no-videos').show();
-                        $('#gamesPager').hide();
-                        track('show', $scope.currentgame.videos)
-                    }
-                    else{
-                        $('#gamesPager').show();
-                        $('.no-videos').hide();
-                    }
-                    $('.loader-videos').hide();
-                    track('hasvideos', $scope.currentgame.videos)
-                    $scope.currentSort = $scope.sortBy[0];
-                }
-           
-     });
     $scope.refreshVideo = function(){
         $scope.currentgame.videos = [];
         $('.pagers').hide();
@@ -195,6 +152,7 @@ function VideoController($scope, $http, $routeParams, gamesService, userService,
     $scope.getNewUrl = function(){
         $scope.currentuser = $scope.user;
         track('user', $scope.currentuser);
+        track('request link', $scope.currentgame);
         if($scope.currentuser.email!=''){
             $scope.loginmessage.message = "Generating your Play Now link...";
             $scope.loginmessage.cls = "alert-success logmess-v";
@@ -221,6 +179,59 @@ function VideoController($scope, $http, $routeParams, gamesService, userService,
                 return;
             });
         }
+    }
+    $scope.showOnLoad = function(){
+        gamesService.getCurrentGame($routeParams.alias).then(function(data){
+                    $('#gamesPager').hide();
+                    $rootScope.currentgame =  data;
+                    $scope.currentgame = data;
+                    $scope.currentgame.pay = parseFloat($scope.currentgame.pay);
+                    // var ctri, ctra = 0;
+                    // if($scope.currentgame.state =='paused'){ ctri++; $scope.currentgame.realstate = "paused" }
+                    // else if($scope.currentgame.pay != 0){ ctra++; $scope.currentgame.realstate = "active" }
+                    // else{ $scope.currentgame.realstate = "paused" }  
+
+                    $scope.countries = $scope.currentgame.country;
+                    $scope.countries = $scope.arrangeCountries($scope.currentgame.country);
+                    track('currentgamer:',  $scope.currentgame);
+                    track("countries", $scope.countries);
+                    if($scope.currentgame.videos.length == 0){
+                        videoService.getVideosOfGame($scope.currentgame.id,$scope.currentgame._id.$id).then(function(data){
+                            $scope.currentgame.videos = data;
+                            track('no videos', $scope.currentgame.videos)
+                            $scope.currentSort = $scope.sortBy[0];
+                            if($scope.currentgame.videos.length == 0){
+                                $('.no-videos').show();
+                                $('#gamesPager').hide();
+                            }
+                            else{
+                                $('.no-videos').hide();
+                                $('#gamesPager').show(); 
+                            }
+                            $('.loader-videos').hide();
+                        });
+                    }
+                    else{
+                        if($scope.currentgame.videos.length == 0){
+                            $('.no-videos').show();
+                            $('#gamesPager').hide();
+                            track('show', $scope.currentgame.videos)
+                        }
+                        else{
+                            $('#gamesPager').show();
+                            $('.no-videos').hide();
+                        }
+                        $('.loader-videos').hide();
+                        track('hasvideos', $scope.currentgame.videos)
+                        $scope.currentSort = $scope.sortBy[0];
+                    }
+               if($routeParams.popup== 1){
+                   // alert('test')
+                   $('.myModal').modal('show');
+                   $scope.getNewUrl();
+               }
+         });
+        
     }
 // LOADVIDEOS
   

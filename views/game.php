@@ -1,4 +1,4 @@
-  <div id="ViewMode" ng-controller="VideoController">
+  <div id="ViewMode" ng-controller="VideoController" ng-init="showOnLoad()">
 
           <div class="gamename">
               <section class='pull-left heads'>

@@ -76,8 +76,12 @@ function HeadController($scope, $http, $location, gamesService,  $rootScope, use
     $scope.Signout = function(){
 
         userService.signOut().then(function(data){
-          alert(data);
             $rootScope.user = [{email:'',id:'', password:'', aff_id:'', admin:false}];
+          track('user signout', $rootScope.user);
+          $scope.user.email = "";
+          $('#loginform').show();
+          $('#waitform').hide();
+          // $location.path('/');
         });
     }
     $scope.Login1 = function () {

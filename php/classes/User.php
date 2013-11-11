@@ -34,7 +34,8 @@ session_start();
                 $_SESSION['user'] = $user;
                 $this->_user = $user;
                 if($redirect)
-                    header("Location: http://www.games.tm/#/game/".$redirect);
+                    header("Location: http://www.games.tm/#/game/".$redirect."/1");
+                    // header("Location: http://old.gamestm/#/game/".$redirect."/1");
                 return $user;
             }   
         }

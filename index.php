@@ -120,7 +120,7 @@ header('Content-Type: text/html; charset=UTF-8');
                           <a href="http://www.facebook.com/anyTVnetwork">
                             <img class='sitelogos' src="img/favicon/facebook.png">
                             <div>
-                                Facebook
+                                Facebook 
                             </div>
                           </a>
                         </li>
@@ -130,7 +130,7 @@ header('Content-Type: text/html; charset=UTF-8');
                   <li><button data-toggle="modal" href=".refModal" ng-show="user.email!=''" class="btn btn-primary referlink" ng-click="referLink(user.id)">Get your Refer-a-Friend link</button></li>
                   <li class="dropdown">
                       <a href=".myModal1"  data-toggle="modal" ng-show="user.email==''" class="btn btn-primary sign-in">Sign in</a>
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-show="user.email!=''">{{user.email}}<b class="caret"></b></a>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-hide="user.email==''">{{user.email}}<b class="caret"></b></a>
                       <ul class="dropdown-menu user-menu">
                           <li><a href="/php/form-post.php" target="_blank" class="">Check Earnings</a></li>
                           <li><a href="#/referrals" class="">My Referrals</a></li>
