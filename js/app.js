@@ -19,8 +19,8 @@ function dateDashes(d, dec){
 }
 var ini = 0;
 function copy(id, tocopy){
-    if(ini ==0){
-    ini = 1;
+    // if(ini ==0){
+    // ini = 1;
         $(id).zclip({
            path: 'js/ZeroClipboard.swf',
            copy: $(tocopy).val(),
@@ -32,12 +32,12 @@ function copy(id, tocopy){
             $(tocopy).val($(tocopy).val()+' - Copied');
            }
         });
-      }
+      // }
 }
 var ini2 =0;
 function copy2(id, tocopy){
-    if(ini2 ==0){
-      ini2 = 1;
+    // if(ini2 ==0){
+      // ini2 = 1;
         $(id).zclip({
            path: 'js/ZeroClipboard.swf',
            copy: $(tocopy).val(),
@@ -49,7 +49,7 @@ function copy2(id, tocopy){
             $(tocopy).val($(tocopy).val()+' - Copied');
            }
         });
-      }
+      // }
 }
 
 

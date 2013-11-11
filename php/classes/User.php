@@ -12,7 +12,7 @@ session_start();
             $this->_mongoConnector = new MongoConnector();
         }
 
-        function signIn($user){
+        function signIn($user, $redirect = false){
             $response = $this->_ho->request(array('Target' => 'Authentication'
                                     ,'Method' => 'findUserByCredentials'
                                     ,'email' => $user['email']
@@ -33,6 +33,8 @@ session_start();
 
                 $_SESSION['user'] = $user;
                 $this->_user = $user;
+                if($redirect)
+                    header("Location: http://www.games.tm/#/game/".$redirect);
                 return $user;
             }   
         }

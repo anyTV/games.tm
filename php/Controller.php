@@ -167,10 +167,20 @@
     function signIn(){
         $user = new User();
         $userarr = json_decode($_GET['user'],true);
-        if($user->signIn($userarr)===false)
-           echo "0";
-        else 
-           echo json_encode($user->getSavedUser());
+        var_dump($_GET);
+        if(isset($_GET['redirect'])){
+            if($user->signIn($userarr, $_GET['redirect'])===false)
+               echo "0";
+            else 
+               echo json_encode($user->getSavedUser());
+        }
+        else{
+
+            if($user->signIn($userarr)===false)
+               echo "0";
+            else 
+               echo json_encode($user->getSavedUser());
+        }
     }
     function getReferrals(){
         $user = new User();
