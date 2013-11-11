@@ -167,7 +167,7 @@
     function signIn(){
         $user = new User();
         $userarr = json_decode($_GET['user'],true);
-        var_dump($_GET);
+        // var_dump($_GET);
         if(isset($_GET['redirect'])){
             if($user->signIn($userarr, $_GET['redirect'])===false)
                echo "0";
