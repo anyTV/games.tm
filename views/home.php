@@ -39,7 +39,7 @@
                     Games.tm also provides the status of your videos even if you have multiple Play Now links on your videos.
                   </div>
                   <div class="col-lg-4">
-                    <span class="subtitle">Why join <img src="http://v1.any.tv/wp-content/uploads/2013/03/anytv-logo-1600x1600-to-84x32.png">?</span>
+                    <span class="subtitle">Why join <img src="http://v2.any.tv/wp-content/uploads/2013/03/anytv-logo-1600x1600-to-84x32.png">?</span>
 
                     We pay you recommendation revenue in addition to YouTube ad revenue, and we have a fully-functioning dashboard that reports your earnings the moment they happen.
                     Also, we pay you a lifetime 10% bonus for recommending us to your friends!
