@@ -93,7 +93,7 @@
            <section class="pagers" id="gamesPager">
              <input type="button" class="btn btn-default" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" value="Previous"/>
              {{currentPage+1}}/{{numberOfPages()}}
-             <input type="button" class="btn btn-default" ng-disabled="currentPage >= games.length/pageSize - 1" ng-click="currentPage=currentPage+1" value="Next"/>
+             <input type="button" class="btn btn-default" ng-disabled="currentPage >= currentgame.videos.length/pageSize - 1" ng-click="currentPage=currentPage+1" value="Next"/>
 
            </section>
        <div class="modal fade modal-login myModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
